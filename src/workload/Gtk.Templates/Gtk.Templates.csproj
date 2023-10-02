@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.Build.NoTargets/3.7.0">
+
+  <PropertyGroup>
+    <Description>Templates for Gtk platforms.</Description>
+    <PackageTags>gtk;sdk;templates;template</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="gtk/**" Pack="true" PackagePath="content/gtk" />
+  </ItemGroup>
+
+</Project>

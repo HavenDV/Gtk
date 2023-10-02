@@ -1,0 +1,22 @@
+{
+  "version": "@GTK_WORKLOAD_VERSION@",
+  "workloads": {
+    "gtk": {
+      "description": ".NET SDK Workload for building Gtk applications.",
+      "packs": [
+        "Gtk.Sdk",
+        "Gtk.Templates"
+      ]
+    }
+  },
+  "packs": {
+    "Gtk.Sdk": {
+      "kind": "sdk",
+      "version": "@GTK_WORKLOAD_VERSION@"
+    },
+    "Gtk.Templates": {
+      "kind": "template",
+      "version": "@GTK_WORKLOAD_VERSION@"
+    }
+  }
+}

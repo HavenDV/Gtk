@@ -1,0 +1,57 @@
+<!--
+***********************************************************************************************
+NET.Sdk.Gtk.csproj
+
+This project file is used to create the NET.Sdk.Gtk NuGet, which is the
+workload manifest pack containing information about the Gtk .NET workload.
+***********************************************************************************************
+-->
+<Project Sdk="Microsoft.Build.NoTargets/3.7.0">
+
+  <PropertyGroup>
+    <Description>Gtk .NET workload manifest. Please do not reference directly.</Description>
+    <PackageTags>gtk;sdk;manifest</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="*.cs" />
+    <None Include="WorkloadManifest.targets" Pack="true" PackagePath="data" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <BeforePack>
+      _GenerateWorkloadContent;
+      $(BeforePack);
+    </BeforePack>
+  </PropertyGroup>
+
+  <UsingTask TaskName="ReplaceFileContents" TaskFactory="RoslynCodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
+    <ParameterGroup>
+      <SourceFile ParameterType="Microsoft.Build.Framework.ITaskItem" Required="true" />
+      <DestinationFile ParameterType="Microsoft.Build.Framework.ITaskItem" Required="true" />
+      <Replacements ParameterType="System.String[]" />
+      <ReplacementFilePath ParameterType="System.String" />
+    </ParameterGroup>
+    <Task>
+      <Code Type="Class" Language="cs" Source="$(MSBuildThisFileDirectory)ReplaceFileContents.cs"/>
+    </Task>
+  </UsingTask>
+  
+  <Target Name="_GenerateWorkloadContent">
+    <PropertyGroup>
+      <WorkloadManifestJsonPath>$(PackageOutputPath)workload-manifest\WorkloadManifest.json</WorkloadManifestJsonPath>
+    </PropertyGroup>
+
+    <MakeDir Directories="$([System.IO.Path]::GetDirectoryName ($(WorkloadManifestJsonPath)))" />
+    <ReplaceFileContents
+        SourceFile="WorkloadManifest.in.json"
+        DestinationFile="$(WorkloadManifestJsonPath)"
+        Replacements="@GTK_WORKLOAD_VERSION@=$(Version);">
+    </ReplaceFileContents>
+
+    <ItemGroup>
+      <_PackageFiles Include="$(WorkloadManifestJsonPath)" PackagePath="data" />
+    </ItemGroup>
+  </Target>
+
+</Project>

@@ -1,0 +1,10 @@
+<Project>
+
+	<PropertyGroup>
+		<AfterMicrosoftNETSdkTargets>$(AfterMicrosoftNETSdkTargets);$(MSBuildThisFileDirectory)Gtk.Sdk.After.targets</AfterMicrosoftNETSdkTargets>
+	</PropertyGroup>
+
+  <Import Project="Gtk.Sdk.Versions.targets" />
+  <Import Project="Gtk.Sdk.DefaultProperties.targets" />
+
+</Project>

@@ -1,0 +1,22 @@
+<Project>
+
+  <PropertyGroup>
+    <_DefaultTargetPlatformVersion>1.0</_DefaultTargetPlatformVersion>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetPlatformSupported>true</TargetPlatformSupported>
+    <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">$(_DefaultTargetPlatformVersion)</TargetPlatformVersion>
+    <_TargetFramework Condition="$(TargetFramework.EndsWith('gtk'))">$(TargetFramework)$(_DefaultTargetPlatformVersion)</_TargetFramework>
+    <_TargetFramework Condition="!$(TargetFramework.EndsWith('gtk'))">$(TargetFramework)</_TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <SupportedPlatform Include="gtk" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <SdkSupportedTargetPlatformVersion Include="1.0" />
+  </ItemGroup>
+
+</Project>

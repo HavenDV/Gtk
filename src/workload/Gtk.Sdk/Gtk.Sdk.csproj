@@ -1,0 +1,20 @@
+<!--
+***********************************************************************************************
+Gtk.Sdk.csproj
+
+This project file is used to create the Gtk.Sdk NuGet, which is the
+core workload sdk pack imported by the NET.Sdk.Gtk.
+***********************************************************************************************
+-->
+<Project Sdk="Microsoft.Build.NoTargets/3.7.0">
+
+  <PropertyGroup>
+    <Description>The MSBuild targets for buliding Gtk .NET projects</Description>
+    <PackageTags>gtk;sdk</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="Sdk/*" Pack="true" PackagePath="Sdk" />
+  </ItemGroup>
+
+</Project>

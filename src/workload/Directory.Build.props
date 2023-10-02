@@ -1,0 +1,31 @@
+<Project>
+
+  <PropertyGroup>
+    <Configuration>Release</Configuration>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageType>DotnetPlatform</PackageType>
+    <GenerateDependencyFile>false</GenerateDependencyFile>
+    <PackageOutputPath>$(MSBuildThisFileDirectory)../../artifacts/nuget/</PackageOutputPath>
+    <!-- Remove the `<group targetFramework=".NETStandard2.0" />` entry from the .nuspec. -->
+    <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
+    <IncludeSymbols>false</IncludeSymbols>
+    <!-- Ignore TargetFramework reference group related warnings, these are workload packs not functional NuGets. -->
+    <NoWarn>$(NoWarn);NU5128;NU5131</NoWarn>
+  </PropertyGroup>
+  
+  <PropertyGroup Label="Nuget">
+    <Version>0.2.0</Version>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    <Authors>HavenDV</Authors>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageIcon>nuget_icon.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+
+  <ItemGroup Label="Nuget">
+    <None Include="$(MSBuildThisFileDirectory)../../assets/nuget_icon.png" Pack="true" PackagePath="\" Visible="false" />
+    <None Include="$(MSBuildThisFileDirectory)../../README.md" Pack="true" PackagePath="\" Visible="false" />
+  </ItemGroup>
+
+</Project>

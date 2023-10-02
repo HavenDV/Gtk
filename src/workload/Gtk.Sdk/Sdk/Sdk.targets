@@ -1,0 +1,5 @@
+<Project>
+
+  <Import Project="$(MSBuildThisFileDirectory)Gtk.Sdk.targets"  />
+
+</Project>

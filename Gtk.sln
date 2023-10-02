@@ -1,0 +1,72 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30204.135
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E793AF18-4371-4EBD-96FC-195EB1798855}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		LICENSE = LICENSE
+		README.md = README.md
+		NuGet.config = NuGet.config
+		.github\workflows\dotnet.yml = .github\workflows\dotnet.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workload", "workload", "{10924C86-DC3B-4F8D-A46A-D29E5562C65F}"
+	ProjectSection(SolutionItems) = preProject
+		src\workload\Directory.Build.props = src\workload\Directory.Build.props
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gtk.Sdk", "src\workload\Gtk.Sdk\Gtk.Sdk.csproj", "{45870485-AB6B-4028-B55D-885A0A13E916}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{180C7C07-0511-494F-A5D2-47E802B7FA8F}"
+	ProjectSection(SolutionItems) = preProject
+		scripts\README.md = scripts\README.md
+		scripts\workload-install.ps1 = scripts\workload-install.ps1
+		scripts\workload-install.sh = scripts\workload-install.sh
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tasks", "tasks", "{F1EA4981-FF8F-4AFF-9C5D-27E4D570E0C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasks", "src\tasks\Tasks\Tasks.csproj", "{202CE379-8217-4ED6-8474-DED8CA18EB7D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gtk.Sdk.Manifest", "src\workload\Gtk.Sdk.Manifest\Gtk.Sdk.Manifest.csproj", "{F4D8B8F9-BD0A-454F-8536-8D5E9B4504E5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gtk.Templates", "src\workload\Gtk.Templates\Gtk.Templates.csproj", "{FB7F375E-B35B-4E67-8401-D916C341AC77}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{45870485-AB6B-4028-B55D-885A0A13E916}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45870485-AB6B-4028-B55D-885A0A13E916}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45870485-AB6B-4028-B55D-885A0A13E916}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45870485-AB6B-4028-B55D-885A0A13E916}.Release|Any CPU.Build.0 = Release|Any CPU
+		{202CE379-8217-4ED6-8474-DED8CA18EB7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{202CE379-8217-4ED6-8474-DED8CA18EB7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{202CE379-8217-4ED6-8474-DED8CA18EB7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{202CE379-8217-4ED6-8474-DED8CA18EB7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4D8B8F9-BD0A-454F-8536-8D5E9B4504E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4D8B8F9-BD0A-454F-8536-8D5E9B4504E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4D8B8F9-BD0A-454F-8536-8D5E9B4504E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4D8B8F9-BD0A-454F-8536-8D5E9B4504E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB7F375E-B35B-4E67-8401-D916C341AC77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB7F375E-B35B-4E67-8401-D916C341AC77}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB7F375E-B35B-4E67-8401-D916C341AC77}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB7F375E-B35B-4E67-8401-D916C341AC77}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{45870485-AB6B-4028-B55D-885A0A13E916} = {10924C86-DC3B-4F8D-A46A-D29E5562C65F}
+		{202CE379-8217-4ED6-8474-DED8CA18EB7D} = {F1EA4981-FF8F-4AFF-9C5D-27E4D570E0C1}
+		{F4D8B8F9-BD0A-454F-8536-8D5E9B4504E5} = {10924C86-DC3B-4F8D-A46A-D29E5562C65F}
+		{FB7F375E-B35B-4E67-8401-D916C341AC77} = {10924C86-DC3B-4F8D-A46A-D29E5562C65F}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CED9A020-DBA5-4BE6-8096-75E528648EC1}
+	EndGlobalSection
+EndGlobal

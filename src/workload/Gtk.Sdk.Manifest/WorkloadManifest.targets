@@ -1,0 +1,9 @@
+<Project>
+  
+  <Import Project="Sdk.targets" Sdk="Gtk.Sdk" Condition="'$(TargetPlatformIdentifier)' == 'gtk'" />
+
+  <ItemGroup Condition=" '$(TargetFrameworkIdentifier)' == '.NETCoreApp' and $([MSBuild]::VersionGreaterThanOrEquals($(TargetFrameworkVersion), '6.0')) ">
+    <SdkSupportedTargetPlatformIdentifier Include="gtk" DisplayName="Gtk" />
+  </ItemGroup>
+  
+</Project>
