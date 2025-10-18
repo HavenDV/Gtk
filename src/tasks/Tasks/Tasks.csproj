@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <PropertyGroup Label="Parameters">
-    <DotnetVersion>7.0.400</DotnetVersion>
+    <DotnetVersion>9.0.300</DotnetVersion>
     <DotnetInstallUrl Condition="$([MSBuild]::IsOSPlatform('Windows'))">https://dot.net/v1/dotnet-install.ps1</DotnetInstallUrl>
     <DotnetInstallUrl Condition="$([MSBuild]::IsOSPlatform('Linux')) or $([MSBuild]::IsOSPlatform('macOS'))">https://dot.net/v1/dotnet-install.sh</DotnetInstallUrl>
     <UseCurrentDotnet>true</UseCurrentDotnet>

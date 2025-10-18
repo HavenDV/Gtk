@@ -133,7 +133,7 @@ function Install-GtkWorkload([string]$DotnetVersion, [string]$Source)
     $ManifestName = "$ManifestBaseName"
 
     if ($DotnetTargetVersionBand -eq "<auto>" -or $UpdateAllWorkloads.IsPresent) {
-        if ($CurrentDotnetVersion -ge "7.0")
+        if ($CurrentDotnetVersion -ge "9.0")
         {
             $IsPreviewVersion = $DotnetVersion.Contains("-preview") -or $DotnetVersion.Contains("-rc") -or $DotnetVersion.Contains("-alpha")
             if ($IsPreviewVersion -and ($SplitVersion.Count -ge 4)) {
@@ -227,7 +227,7 @@ if (Get-Command $DotnetCommand -ErrorAction SilentlyContinue)
 {
     if ($UpdateAllWorkloads.IsPresent)
     {
-        $InstalledDotnetSdks = Invoke-Expression "& '$DotnetCommand' --list-sdks | Select-String -Pattern '^6|^7'" | ForEach-Object {$_ -replace (" \[.*","")}
+        $InstalledDotnetSdks = Invoke-Expression "& '$DotnetCommand' --list-sdks | Select-String -Pattern '^[6-9]'" | ForEach-Object {$_ -replace (" \[.*","")}
     }
     else
     {

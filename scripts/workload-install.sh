@@ -122,7 +122,7 @@ function install_gtkworkload() {
 
     # Check version band
     if [[ "$DOTNET_TARGET_VERSION_BAND" == "<auto>" ]]; then
-        if [[ "$CURRENT_DOTNET_VERSION" -ge "7" ]]; then
+        if [[ "$CURRENT_DOTNET_VERSION" -ge "9" ]]; then
             if [[ "$DOTNET_VERSION" == *"-preview"* || $DOTNET_VERSION == *"-rc"* || $DOTNET_VERSION == *"-alpha"* ]] && [[ ${#array[@]} -ge 4 ]]; then
                 DOTNET_TARGET_VERSION_BAND="$DOTNET_VERSION_BAND${array[2]:3}.${array[3]}"
             else
@@ -205,7 +205,7 @@ function install_gtkworkload() {
 }
 
 if [[ "$UPDATE_ALL_WORKLOADS" == "true" ]]; then
-    INSTALLED_DOTNET_SDKS=$($DOTNET_COMMAND --list-sdks | sed -n '/^6\|^7/p' | sed 's/ \[.*//g')
+    INSTALLED_DOTNET_SDKS=$($DOTNET_COMMAND --list-sdks | sed -n '/^[6-9]/p' | sed 's/ \[.*//g')
 else
     INSTALLED_DOTNET_SDKS=$($DOTNET_COMMAND --version)
 fi
