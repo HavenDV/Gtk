@@ -5,4 +5,10 @@
     <DefineConstants Condition="!$(_IsGtkDefined)">__GTK__;$(DefineConstants)</DefineConstants>
   </PropertyGroup>
 
+	<PropertyGroup Condition="'$(TargetFramework)' != '' and $(TargetFramework.Contains('-gtk'))">
+		<!-- Switchable by /p:GtkMaui_ImageBehavior=EmbedFiles or CopyFiles-->
+		<GtkMaui_ImageBehavior Condition="'$(GtkMaui_ImageBehavior)'==''">CopyFiles</GtkMaui_ImageBehavior>
+	</PropertyGroup>
+
+	
 </Project>
