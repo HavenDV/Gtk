@@ -8,23 +8,4 @@
   <Import Project="Gtk.Sdk.NuGet.targets" Condition=" '$(MSBuildRuntimeType)' == 'Full' and '$(MSBuildVersion)' &lt; '17.0' " />
 	<Import Project="$(MSBuildThisFileDirectory)Gtk.Sdk.Maui.Resizetizer.After.targets" />
 
-
-	<!-- Diagnosis -->
-	<Target Name="GtkMaui_Diag_After"
-          AfterTargets="_ResizetizeImages"
-          Condition="$(TargetFramework.EndsWith('gtk')) and '@(MauiImage)' != '' and '$(GtkMaui_ImageBehavior)' == 'CopyPng'">
-		<Message Importance="High" Text="[Gtk.Sdk] Diag_After: _ResizetizeImages " />
-	</Target>
-
-	<Target Name="GtkMaui_Diag_After2"
-          AfterTargets="ResizetizeImagesGTK"
-          Condition="$(TargetFramework.EndsWith('gtk')) and '@(MauiImage)' != '' and '$(GtkMaui_ImageBehavior)' == 'CopyPng'">
-		<Message Importance="High" Text="[Gtk.Sdk] Diag_After: ResizetizeImagesGTK " />
-	</Target>
-	
-	<Target Name="GtkMaui_Diag_After3"
-          AfterTargets="ResizetizeImages"
-          Condition="$(TargetFramework.EndsWith('gtk')) and '@(MauiImage)' != '' and '$(GtkMaui_ImageBehavior)' == 'CopyPng'">
-		<Message Importance="High" Text="[Gtk.Sdk] Diag_After: ResizetizeImages " />
-	</Target>
 </Project>
