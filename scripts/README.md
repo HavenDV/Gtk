@@ -4,14 +4,17 @@
 
 This script installs the Gtk workload manifest files and packs to the installed dotnet sdk.
 
-### Usage
-On Linux / macOS:
-```
+## Usage
+
+### Linux / macOS
+
+```sh
 workload-install.sh [-v <Version>] [-d <Dotnet SDK Location>] [-t <Dotnet Version Band Target Folder>]
 ```
 
-On Windows:
-```
+### Windows
+
+```sh
 workload-install.ps1 [-v <Version>] [-d <Dotnet SDK Location>] [-t <Dotnet Version Band Target Folder>]
 ```
 
@@ -20,10 +23,10 @@ workload-install.ps1 [-v <Version>] [-d <Dotnet SDK Location>] [-t <Dotnet Versi
 > workload-install.ps1 -v 7.0.100-preview.6.19 -t 6.0.300
 
 If this script is executed in CI environment, you can use `curl` to download the script and execute it.
-```
+
+```sh
 curl -sSL https://raw.githubusercontent.com/HavenDV/Gtk/main/workload/scripts/workload-install.sh | bash
-```
-or
-```
+
+# or
 curl -sSL https://raw.githubusercontent.com/HavenDV/Gtk/main/workload/scripts/workload-install.sh | bash -s -- -v <version> -d <dotnet sdk location>
 ```
