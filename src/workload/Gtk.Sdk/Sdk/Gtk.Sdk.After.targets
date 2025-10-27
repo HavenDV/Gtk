@@ -6,5 +6,6 @@
 
   <Import Project="Gtk.Sdk.Common.targets" />
   <Import Project="Gtk.Sdk.NuGet.targets" Condition=" '$(MSBuildRuntimeType)' == 'Full' and '$(MSBuildVersion)' &lt; '17.0' " />
+	<Import Project="$(MSBuildThisFileDirectory)Gtk.Sdk.Maui.Resizetizer.After.targets" />
 
 </Project>
