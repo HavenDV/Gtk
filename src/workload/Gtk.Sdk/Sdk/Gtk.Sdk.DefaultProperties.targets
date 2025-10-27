@@ -11,32 +11,32 @@
 		<Gtk_MauiEmbededResourceNamespace>$(RootNamespace).$(Gtk_MauiGTKNamespace)</Gtk_MauiEmbededResourceNamespace>
 		
 		<!-- Switchable by /p:Gtk_MauiImageBehavior=EmbedFiles or CopyFiles-->
-		<Gtk_MauiImageBehavior Condition="'$(GtkMaui_ImageBehavior)'==''">CopyFiles</Gtk_MauiImageBehavior>
+		<Gtk_MauiImageBehavior Condition="'$(Gtk_MauiImageBehavior)'==''">EmbedFiles</Gtk_MauiImageBehavior>
 
 		<!-- Switchable by /p:Gtk_MauiFontBehavior=EmbedFiles or CopyFiles-->
-		<Gtk_MauiFontBehavior Condition="'$(Gtk_MauiFontBehavior)'==''">CopyFiles</Gtk_MauiFontBehavior>
+		<Gtk_MauiFontBehavior Condition="'$(Gtk_MauiFontBehavior)'==''">EmbedFiles</Gtk_MauiFontBehavior>
 
 		<!-- Switchable by /p:Gtk_MauiSplashBehavior=EmbedFiles or CopyFiles-->
-		<Gtk_MauiSplashBehavior Condition="'$(Gtk_MauiSplashBehavior)'==''">CopyFiles</Gtk_MauiSplashBehavior>
+		<Gtk_MauiSplashBehavior Condition="'$(Gtk_MauiSplashBehavior)'==''">EmbedFiles</Gtk_MauiSplashBehavior>
 
 		<!-- Switchable by /p:Gtk_MauiAssetBehavior=EmbedFiles or CopyFiles-->
-		<Gtk_MauiAssetBehavior Condition="'$(Gtk_MauiAssetBehavior)'==''">CopyFiles</Gtk_MauiAssetBehavior>
+		<Gtk_MauiAssetBehavior Condition="'$(Gtk_MauiAssetBehavior)'==''">EmbedFiles</Gtk_MauiAssetBehavior>
 		
 		<!--Deactivates the original Resizetizer/ResizetizeImage-->
-		<EnableMauiImageProcessing Condition="'$(_ResizetizerIsGtkApp)' == 'True'">false</EnableMauiImageProcessing>
 		<EnableMauiImageProcessingGTK Condition=" '$(EnableMauiImageProcessing)' == '' ">true</EnableMauiImageProcessingGTK>
-
+		<EnableMauiImageProcessing>false</EnableMauiImageProcessing>
+		
 		<!--Deactivates the original MauiFontProcessing/ProcessMauiFonts-->
-		<EnableMauiFontProcessing Condition="'$(_ResizetizerIsGtkApp)' == 'True'">false</EnableMauiFontProcessing>
 		<EnableMauiFontProcessingGTK Condition=" '$(EnableMauiFontProcessing)' == '' ">true</EnableMauiFontProcessingGTK>
-
+		<EnableMauiFontProcessing>false</EnableMauiFontProcessing>
+		
 		<!--Deactivates the original EnableMauiAssetProcessing/ProcessMauiAssets-->
-		<EnableMauiAssetProcessing Condition="'$(_ResizetizerIsGtkApp)' == 'True'">false</EnableMauiAssetProcessing>
 		<EnableMauiAssetProcessingGTK Condition=" '$(EnableMauiAssetProcessing)' == '' ">true</EnableMauiAssetProcessingGTK>
-
+		<EnableMauiAssetProcessing>false</EnableMauiAssetProcessing>
+		
 		<!--Deactivates the original EnableMauiSplashScreenProcessing/ProcessMauiSplashScreens-->
-		<EnableMauiSplashScreenProcessing Condition="'$(_ResizetizerIsGtkApp)' == 'True'">false</EnableMauiSplashScreenProcessing>
 		<EnableMauiSplashScreenProcessingGTK Condition=" '$(EnableMauiSplashScreenProcessing)' == '' ">true</EnableMauiSplashScreenProcessingGTK>
+		<EnableMauiSplashScreenProcessing>false</EnableMauiSplashScreenProcessing>
 	</PropertyGroup>
 	
 </Project>

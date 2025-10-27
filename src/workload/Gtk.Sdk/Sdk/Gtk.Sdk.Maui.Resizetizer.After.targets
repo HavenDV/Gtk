@@ -56,7 +56,7 @@
     <_MauiIntermediateFontsGTK>$(_ResizetizerIntermediateOutputRoot)f\</_MauiIntermediateFontsGTK>
     <_MauiIntermediateSplashScreenGTK>$(_ResizetizerIntermediateOutputRoot)sp\</_MauiIntermediateSplashScreenGTK>
     
-    <_ResizetizerPlatformIsGtk Condition="$(TargetFramework.EndsWith('gtk')) == 'True'">true</_ResizetizerPlatformIsGtk>
+    <_ResizetizerPlatformIsGtk Condition="$([System.String]::Copy('$(TargetFramework)').EndsWith('-gtk'))">true</_ResizetizerPlatformIsGtk>
 
     <ResizetizerIncludeSelfProject Condition="'$(ResizetizerIncludeSelfProject)' == ''">False</ResizetizerIncludeSelfProject>
 
@@ -79,22 +79,12 @@
 		<_ProcessMauiSplashGTKStamp>
 			$([System.IO.Path]::Combine('$(IntermediateOutputPath)','force.$(MSBuildProjectName).$(TargetFramework).$([System.Guid]::NewGuid()).stamp'))
 		</_ProcessMauiSplashGTKStamp>
-
-		<_ProcessMauiAssetsGTKStamp>
-			$([System.IO.Path]::Combine('$(IntermediateOutputPath)','force.$(MSBuildProjectName).$(TargetFramework).$([System.Guid]::NewGuid()).stamp'))
-		</_ProcessMauiAssetsGTKStamp>
 	</PropertyGroup>
 
   <PropertyGroup Condition="'$(TargetFrameworkIdentifier)' == '.NETCoreApp'">
     <_ResizetizerIsNetCore>true</_ResizetizerIsNetCore>
     <_ResizetizerIsGtkApp Condition="'$(_ResizetizerPlatformIsGtk)' == 'true' And ( '$(OutputType)' == 'Exe' )">true</_ResizetizerIsGtkApp>
   </PropertyGroup>
-
-	<!-- Diag -->
-	<Target Name="GtkMaui_Diag_After" AfterTargets="Build" Condition="$(TargetFramework.EndsWith('gtk'))">
-		<Message Importance="High" Text="[Gtk.Sdk] Diag_After: TFM=$(TargetFramework) ImageBehavior=$(Gtk_MauiImageBehavior) EnableMauiImageProcessing=$(EnableMauiImageProcessing)" />
-		<Message Importance="High" Text="[Gtk.Sdk] Diag_After: ResizetizerIsGtkApp=$(_ResizetizerIsGtkApp) $(EnableMauiSplashScreenProcessingGTK) @(MauiSplashScreen->Count())" />
-	</Target>
 	
   <PropertyGroup Condition="'$(_ResizetizerIsGtkApp)' == 'true'">
     <_ResizetizerIsCompatibleApp>true</_ResizetizerIsCompatibleApp>
@@ -146,7 +136,7 @@
 
   <!-- Collect images from referenced projects -->
   <Target Name="ResizetizeCollectItems"
-    Condition="'$(_ResizetizerIsCompatibleApp)' == 'true' And '$(DisableResizetizer)' != 'true' and $(_ResizetizerIsGtkApp)' == 'true'"
+    Condition="'$(_ResizetizerIsCompatibleApp)' == 'true' And '$(DisableResizetizer)' != 'true' and '$(_ResizetizerIsGtkApp)' == 'true'"
     BeforeTargets="$(ResizetizeCollectItemsBeforeTargets)"
     AfterTargets="$(ResizetizeCollectItemsAfterTargets)">
 
@@ -263,17 +253,17 @@ namespace Microsoft.Maui
 			[ModuleInitializer]
 			internal static void Init()
 			{
-				_ = typeof(GtkBuildSettings)%3B
+			_ = typeof(GtkBuildSettingsContainer)%3B
 
-				_ = GtkBuildSettingsContainer.MauiEmbededResourceNamespace.Length%3B
-				_ = GtkBuildSettingsContainer.MauiGTKNamespace.Length%3B
-				_ = GtkBuildSettingsContainer.MauiGTKDefaultDirectory.Length%3B
-				_ = GtkBuildSettingsContainer.MauiImageBehavior.Length%3B
-				_ = GtkBuildSettingsContainer.MauiFontBehavior.Length%3B
-				_ = GtkBuildSettingsContainer.MauiSplashBehavior.Length%3B
-				_ = GtkBuildSettingsContainer.MauiAssetBehavior.Length%3B
+			_ = GtkBuildSettingsContainer.MauiEmbededResourceNamespace.Length%3B
+			_ = GtkBuildSettingsContainer.MauiGTKNamespace.Length%3B
+			_ = GtkBuildSettingsContainer.MauiGTKDefaultDirectory.Length%3B
+			_ = GtkBuildSettingsContainer.MauiImageBehavior.Length%3B
+			_ = GtkBuildSettingsContainer.MauiFontBehavior.Length%3B
+			_ = GtkBuildSettingsContainer.MauiSplashBehavior.Length%3B
+			_ = GtkBuildSettingsContainer.MauiAssetBehavior.Length%3B
 
-				RuntimeHelpers.RunClassConstructor(typeof(GtkBuildSettings).TypeHandle)%3B
+			RuntimeHelpers.RunClassConstructor(typeof(GtkBuildSettingsContainer).TypeHandle)%3B
 			}
 		}
 	}
@@ -344,8 +334,13 @@ namespace Microsoft.Maui
 
 		<!-- Stamp/Tracking -->
 		<PropertyGroup>
-			<_ProcessMauiAssetsGTKStamp Condition="'$(_ProcessMauiAssetsGTKStamp)'==''">$(IntermediateOutputPath)maui\assets.gtk.stamp</_ProcessMauiAssetsGTKStamp>
+			<_ProcessMauiAssetsGTKStamp>
+				$([System.IO.Path]::Combine('$(IntermediateOutputPath)','force.$(MSBuildProjectName).$(TargetFramework).$([System.Guid]::NewGuid()).stamp'))
+			</_ProcessMauiAssetsGTKStamp>
 		</PropertyGroup>
+
+		
+		
 		<Touch Files="$(_ProcessMauiAssetsGTKStamp)" AlwaysCreate="True" />
 		<ItemGroup>
 			<FileWrites Include="$(_ProcessMauiAssetsGTKStamp)" />
@@ -398,14 +393,13 @@ namespace Microsoft.Maui
 
 		<!-- GTK - EmbedFiles -->
 		<PropertyGroup Condition="'$(Gtk_MauiSplashBehavior)' == 'EmbedFiles'">
-			<GtkEmbedPrefix>$(Gtk_MauiEmbededResourceNamespace).MauiSplash.</GtkEmbedPrefix>
+			<GtkEmbedPrefix>$(Gtk_MauiEmbededResourceNamespace).MauiSplashScreens.</GtkEmbedPrefix>
 		</PropertyGroup>
 
 		<ItemGroup Condition="'$(Gtk_MauiSplashBehavior)' == 'EmbedFiles'">
 			<EmbeddedResource Include="@(_MauiSplashCollected)" Condition="'@(_MauiSplashCollected)' != ''">
 				<LogicalName>$(GtkEmbedPrefix)%(_MauiSplashCollected.Filename)%(_MauiSplashCollected.Extension)</LogicalName>
 			</EmbeddedResource>
-			<!--<FileWrites Include="@(_MauiSplashCollected)" />-->
 		</ItemGroup>
 
     <!-- Stamp file for Outputs -->
@@ -475,7 +469,7 @@ namespace Microsoft.Maui
 					AfterTargets="$(ResizetizeAfterTargets)"
 					BeforeTargets="$(ResizetizeGTKBeforeTargets)"
 					DependsOnTargets="$(ResizetizeGTKDependsOnTargets)">
-
+				
     <ItemGroup>
         <_MauiImageToProcess Include="@(MauiImage)" Exclude="$(DefaultItemExcludes)" />
     </ItemGroup>
