@@ -168,7 +168,7 @@ function Install-GtkWorkload([string]$DotnetVersion, [string]$Source)
             if ($DotnetWorkloadList)
             {
                 Write-Host "Gtk Workload $Version version is already installed."
-                #Continue
+                Continue
             }
         }
 
